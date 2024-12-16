@@ -12,7 +12,7 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "ts_ls",
-                    "csharp_ls"
+                    "csharp_ls",
                 }
             })
         end
@@ -21,7 +21,15 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({})
+            lspconfig.lua_ls.setup({
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                    },
+                }
+            })
             lspconfig.ts_ls.setup({})
             lspconfig.csharp_ls.setup({})
 
